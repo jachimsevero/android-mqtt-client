@@ -25,11 +25,16 @@ android {
     }
   }
   compileOptions {
-    sourceCompatibility = JavaVersion.VERSION_11
-    targetCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_21
+    targetCompatibility = JavaVersion.VERSION_21
+  }
+  packagingOptions {
+    resources {
+      excludes += listOf("META-INF/INDEX.LIST", "META-INF/io.netty.versions.properties")
+    }
   }
   kotlinOptions {
-    jvmTarget = "11"
+    jvmTarget = "21"
   }
   buildFeatures {
     compose = true
@@ -46,6 +51,13 @@ dependencies {
   implementation(libs.androidx.ui.graphics)
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
+
+  implementation(libs.hivemq.mqtt.client)
+  implementation(platform(libs.hivemq.mqtt.client.websocket))
+  implementation(platform(libs.hivemq.mqtt.client.proxy))
+  implementation(platform(libs.hivemq.mqtt.client.epoll))
+  implementation(libs.hivemq.mqtt.client.reactor)
+
   testImplementation(libs.junit)
   androidTestImplementation(libs.androidx.junit)
   androidTestImplementation(libs.androidx.espresso.core)
