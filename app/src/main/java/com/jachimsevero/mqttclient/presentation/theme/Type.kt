@@ -1,4 +1,4 @@
-package com.jachimsevero.mqttclient.ui.theme
+package com.jachimsevero.mqttclient.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

@@ -1,4 +1,4 @@
-package com.jachimsevero.mqttclient.ui.theme
+package com.jachimsevero.mqttclient.presentation.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
