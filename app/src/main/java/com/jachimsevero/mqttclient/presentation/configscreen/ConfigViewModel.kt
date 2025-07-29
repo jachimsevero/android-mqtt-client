@@ -6,11 +6,9 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ConfigViewModel @Inject constructor() :
-    BaseMVIViewModel<
-        ConfigContract.State,
-        ConfigContract.Event,
-        ConfigContract.Effect,
-    >(ConfigContract.State()) {
+    BaseMVIViewModel<ConfigContract.State, ConfigContract.Event, ConfigContract.Effect>(
+        ConfigContract.State()
+    ) {
 
   override suspend fun handleEvent(event: ConfigContract.Event) {
     when (event) {

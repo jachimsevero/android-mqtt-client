@@ -12,7 +12,7 @@ interface ConfigContract {
       val username: String = "",
       val password: String = "",
       val topic: String = "",
-      val receivedMessages: String = ""
+      val receivedMessages: String = "",
   ) : MviState
 
   sealed class Event : MviEvent {

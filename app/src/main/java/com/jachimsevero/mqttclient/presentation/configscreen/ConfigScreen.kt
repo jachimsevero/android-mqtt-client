@@ -45,59 +45,68 @@ private fun ConfigScreenContent(
 ) {
   Column(
       modifier = Modifier.fillMaxSize().padding(16.dp),
-      verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        OutlinedTextField(
-            value = state.serverHost,
-            onValueChange = { action(ConfigContract.Event.OnServerHostChanged(it)) },
-            label = { Text(stringResource(R.string.server_host)) },
-            modifier = Modifier.fillMaxWidth())
-        OutlinedTextField(
-            value = state.serverPort,
-            onValueChange = { action(ConfigContract.Event.OnServerPortChanged(it)) },
-            label = { Text(stringResource(R.string.server_port)) },
-            modifier = Modifier.fillMaxWidth(),
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number))
-        OutlinedTextField(
-            value = state.websocketPath,
-            onValueChange = { action(ConfigContract.Event.OnWebsocketPathChanged(it)) },
-            label = { Text(stringResource(R.string.websocket_path)) },
-            modifier = Modifier.fillMaxWidth())
-        OutlinedTextField(
-            value = state.username,
-            onValueChange = { action(ConfigContract.Event.OnUsernameChanged(it)) },
-            label = { Text(stringResource(R.string.username)) },
-            modifier = Modifier.fillMaxWidth())
-        OutlinedTextField(
-            value = state.password,
-            onValueChange = { action(ConfigContract.Event.OnPasswordChanged(it)) },
-            label = { Text(stringResource(R.string.password)) },
-            visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth())
-        OutlinedTextField(
-            value = state.topic,
-            onValueChange = { action(ConfigContract.Event.OnTopicChanged(it)) },
-            label = { Text(stringResource(R.string.topic)) },
-            modifier = Modifier.fillMaxWidth())
+      verticalArrangement = Arrangement.spacedBy(12.dp),
+  ) {
+    OutlinedTextField(
+        value = state.serverHost,
+        onValueChange = { action(ConfigContract.Event.OnServerHostChanged(it)) },
+        label = { Text(stringResource(R.string.server_host)) },
+        modifier = Modifier.fillMaxWidth(),
+    )
+    OutlinedTextField(
+        value = state.serverPort,
+        onValueChange = { action(ConfigContract.Event.OnServerPortChanged(it)) },
+        label = { Text(stringResource(R.string.server_port)) },
+        modifier = Modifier.fillMaxWidth(),
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+    )
+    OutlinedTextField(
+        value = state.websocketPath,
+        onValueChange = { action(ConfigContract.Event.OnWebsocketPathChanged(it)) },
+        label = { Text(stringResource(R.string.websocket_path)) },
+        modifier = Modifier.fillMaxWidth(),
+    )
+    OutlinedTextField(
+        value = state.username,
+        onValueChange = { action(ConfigContract.Event.OnUsernameChanged(it)) },
+        label = { Text(stringResource(R.string.username)) },
+        modifier = Modifier.fillMaxWidth(),
+    )
+    OutlinedTextField(
+        value = state.password,
+        onValueChange = { action(ConfigContract.Event.OnPasswordChanged(it)) },
+        label = { Text(stringResource(R.string.password)) },
+        visualTransformation = PasswordVisualTransformation(),
+        modifier = Modifier.fillMaxWidth(),
+    )
+    OutlinedTextField(
+        value = state.topic,
+        onValueChange = { action(ConfigContract.Event.OnTopicChanged(it)) },
+        label = { Text(stringResource(R.string.topic)) },
+        modifier = Modifier.fillMaxWidth(),
+    )
 
-        Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
-          Text(stringResource(R.string.connect))
-        }
+    Button(onClick = {}, modifier = Modifier.fillMaxWidth()) {
+      Text(stringResource(R.string.connect))
+    }
 
-        Text(
-            text = stringResource(R.string.received_messages),
-            style = MaterialTheme.typography.titleMedium,
-            modifier = Modifier.padding(top = 16.dp))
+    Text(
+        text = stringResource(R.string.received_messages),
+        style = MaterialTheme.typography.titleMedium,
+        modifier = Modifier.padding(top = 16.dp),
+    )
 
-        Box(
-            modifier =
-                Modifier.fillMaxWidth()
-                    .height(150.dp)
-                    .border(1.dp, Color.Gray)
-                    .padding(8.dp)
-                    .verticalScroll(rememberScrollState())) {
-              Text(text = "receivedMessages")
-            }
-      }
+    Box(
+        modifier =
+            Modifier.fillMaxWidth()
+                .height(150.dp)
+                .border(1.dp, Color.Gray)
+                .padding(8.dp)
+                .verticalScroll(rememberScrollState())
+    ) {
+      Text(text = "receivedMessages")
+    }
+  }
 }
 
 @Preview(showBackground = true)
