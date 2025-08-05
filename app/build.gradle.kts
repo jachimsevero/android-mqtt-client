@@ -36,8 +36,8 @@ android {
       excludes += listOf("META-INF/INDEX.LIST", "META-INF/io.netty.versions.properties")
     }
   }
-  kotlinOptions {
-    jvmTarget = "21"
+  kotlin {
+    jvmToolchain(21)
   }
   buildFeatures {
     compose = true
