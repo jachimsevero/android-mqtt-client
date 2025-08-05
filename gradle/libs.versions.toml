@@ -13,7 +13,7 @@ composeBom = "2025.07.00"
 hilt-android = "2.57"
 hilt-work = "1.2.0"
 kotlinxSerializationJson = "1.6.3"
-navigationCompose = "2.9.0"
+navigationCompose = "2.9.3"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
