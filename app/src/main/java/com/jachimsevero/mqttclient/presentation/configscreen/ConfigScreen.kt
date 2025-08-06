@@ -1,10 +1,10 @@
 package com.jachimsevero.mqttclient.presentation.configscreen
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -35,35 +35,49 @@ private fun ConfigScreenContent(
     state: ConfigContract.State,
     action: (event: ConfigContract.Event) -> Unit,
 ) {
-  Column(
-      modifier = Modifier.fillMaxSize().padding(16.dp),
-      verticalArrangement = Arrangement.spacedBy(12.dp),
+  LazyColumn(
+    modifier = Modifier
+      .fillMaxSize()
+      .padding(16.dp),
+    verticalArrangement = Arrangement.spacedBy(12.dp)
   ) {
-    TextInput(label = R.string.server_host, value = state.serverHost) {
-      action(ConfigContract.Event.OnServerHostChanged(it))
+    item {
+      TextInput(label = R.string.server_host, value = state.serverHost) {
+        action(ConfigContract.Event.OnServerHostChanged(it))
+      }
     }
 
-    NumberInput(label = R.string.server_port, value = state.serverPort) {
-      action(ConfigContract.Event.OnServerPortChanged(it))
+    item {
+      NumberInput(label = R.string.server_port, value = state.serverPort) {
+        action(ConfigContract.Event.OnServerPortChanged(it))
+      }
     }
 
-    TextInput(label = R.string.websocket_path, value = state.websocketPath) {
-      action(ConfigContract.Event.OnWebsocketPathChanged(it))
+    item {
+      TextInput(label = R.string.websocket_path, value = state.websocketPath) {
+        action(ConfigContract.Event.OnWebsocketPathChanged(it))
+      }
     }
 
-    TextInput(label = R.string.username, value = state.username) {
-      action(ConfigContract.Event.OnUsernameChanged(it))
+    item {
+      TextInput(label = R.string.username, value = state.username) {
+        action(ConfigContract.Event.OnUsernameChanged(it))
+      }
     }
 
-    PasswordInput(label = R.string.password, value = state.password) {
-      action(ConfigContract.Event.OnPasswordChanged(it))
+    item {
+      PasswordInput(label = R.string.password, value = state.password) {
+        action(ConfigContract.Event.OnPasswordChanged(it))
+      }
     }
 
-    Button(
+    item {
+      Button(
         onClick = { action(ConfigContract.Event.OnSaveClicked) },
         modifier = Modifier.fillMaxWidth(),
-    ) {
-      Text(stringResource(R.string.save))
+      ) {
+        Text(stringResource(R.string.save))
+      }
     }
   }
 }
