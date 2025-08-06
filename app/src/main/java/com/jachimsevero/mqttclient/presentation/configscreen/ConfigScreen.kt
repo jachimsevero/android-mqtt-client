@@ -9,6 +9,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -21,11 +22,20 @@ import com.jachimsevero.mqttclient.presentation.configscreen.components.NumberIn
 import com.jachimsevero.mqttclient.presentation.configscreen.components.PasswordInput
 import com.jachimsevero.mqttclient.presentation.configscreen.components.TextInput
 import com.jachimsevero.mqttclient.presentation.theme.MqttClientTheme
+import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-internal fun ConfigScreen() {
+internal fun ConfigScreen(onSaved: () -> Unit) {
   val viewModel: ConfigViewModel = hiltViewModel()
   val state by viewModel.state.collectAsStateWithLifecycle()
+
+  LaunchedEffect(Unit) {
+    viewModel.effect.collectLatest { effect ->
+      when (effect) {
+        ConfigContract.Effect.Saved -> onSaved()
+      }
+    }
+  }
 
   Surface { ConfigScreenContent(state) { event -> viewModel.setEvent(event) } }
 }
@@ -75,7 +85,7 @@ private fun ConfigScreenContent(
           onClick = { action(ConfigContract.Event.OnSaveClicked) },
           modifier = Modifier.fillMaxWidth(),
       ) {
-        Text(stringResource(R.string.save))
+        Text(stringResource(R.string.save_amp_close))
       }
     }
   }

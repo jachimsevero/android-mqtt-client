@@ -4,5 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class NavRoutes {
+  @Serializable data object MainScreen : NavRoutes()
+
   @Serializable data object ConfigScreen : NavRoutes()
 }

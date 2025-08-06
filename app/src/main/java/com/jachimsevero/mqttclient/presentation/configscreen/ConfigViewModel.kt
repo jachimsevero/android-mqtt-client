@@ -110,6 +110,7 @@ class ConfigViewModel @Inject constructor(private val mqttConfigStore: MqttConfi
           mqttConfigStore.save(mqttConfig)
         } finally {
           setState { copy(isSaving = false) }
+          setEffect { ConfigContract.Effect.Saved }
         }
       }
 }

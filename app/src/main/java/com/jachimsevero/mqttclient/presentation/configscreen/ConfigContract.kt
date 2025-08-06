@@ -30,6 +30,6 @@ interface ConfigContract {
   }
 
   sealed class Effect : MviEffect {
-    data class ShowError(val message: String) : Effect()
+    data object Saved : Effect()
   }
 }
