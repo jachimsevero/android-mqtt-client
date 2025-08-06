@@ -36,45 +36,44 @@ private fun ConfigScreenContent(
     action: (event: ConfigContract.Event) -> Unit,
 ) {
   LazyColumn(
-    modifier = Modifier
-      .fillMaxSize()
-      .padding(16.dp),
-    verticalArrangement = Arrangement.spacedBy(12.dp)
+      modifier = Modifier.fillMaxSize().padding(16.dp),
+      verticalArrangement = Arrangement.spacedBy(12.dp),
   ) {
     item {
-      TextInput(label = R.string.server_host, value = state.serverHost) {
+      TextInput(label = R.string.server_host, field = state.serverHost) {
         action(ConfigContract.Event.OnServerHostChanged(it))
       }
     }
 
     item {
-      NumberInput(label = R.string.server_port, value = state.serverPort) {
+      NumberInput(label = R.string.server_port, field = state.serverPort) {
         action(ConfigContract.Event.OnServerPortChanged(it))
       }
     }
 
     item {
-      TextInput(label = R.string.websocket_path, value = state.websocketPath) {
+      TextInput(label = R.string.websocket_path, field = state.websocketPath) {
         action(ConfigContract.Event.OnWebsocketPathChanged(it))
       }
     }
 
     item {
-      TextInput(label = R.string.username, value = state.username) {
+      TextInput(label = R.string.username, field = state.username) {
         action(ConfigContract.Event.OnUsernameChanged(it))
       }
     }
 
     item {
-      PasswordInput(label = R.string.password, value = state.password) {
+      PasswordInput(label = R.string.password, field = state.password) {
         action(ConfigContract.Event.OnPasswordChanged(it))
       }
     }
 
     item {
       Button(
-        onClick = { action(ConfigContract.Event.OnSaveClicked) },
-        modifier = Modifier.fillMaxWidth(),
+          enabled = state.isFormValid && !state.isSaving,
+          onClick = { action(ConfigContract.Event.OnSaveClicked) },
+          modifier = Modifier.fillMaxWidth(),
       ) {
         Text(stringResource(R.string.save))
       }
@@ -85,5 +84,32 @@ private fun ConfigScreenContent(
 @Preview(showBackground = true)
 @Composable
 fun ConfigScreenContentPreview() {
-  MqttClientTheme { ConfigScreenContent(ConfigContract.State()) {} }
+  MqttClientTheme {
+    ConfigScreenContent(
+        ConfigContract.State(
+            serverHost = ConfigUiField(value = "mqqt.circletransit.com"),
+            serverPort = ConfigUiField(value = "443"),
+            websocketPath = ConfigUiField(value = "/mqtt/"),
+            username = ConfigUiField(value = "abc"),
+            password = ConfigUiField(value = "12345678"),
+            isFormValid = true,
+        )
+    ) {}
+  }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ConfigScreenContentPreview_InputValidationError() {
+  MqttClientTheme {
+    ConfigScreenContent(
+        ConfigContract.State(
+            serverHost = ConfigUiField(error = "Host required"),
+            serverPort = ConfigUiField(error = "Port required"),
+            websocketPath = ConfigUiField(error = "WebSocket path required"),
+            username = ConfigUiField(error = "Username required"),
+            password = ConfigUiField(error = "Password required"),
+        )
+    ) {}
+  }
 }

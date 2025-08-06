@@ -6,11 +6,13 @@ import com.jachimsevero.mqttclient.presentation.MviState
 
 interface ConfigContract {
   data class State(
-      val serverHost: String = "",
-      val serverPort: String = "1883",
-      val websocketPath: String = "",
-      val username: String = "",
-      val password: String = "",
+      val serverHost: ConfigUiField = ConfigUiField(),
+      val serverPort: ConfigUiField = ConfigUiField(),
+      val websocketPath: ConfigUiField = ConfigUiField(),
+      val username: ConfigUiField = ConfigUiField(),
+      val password: ConfigUiField = ConfigUiField(),
+      val isFormValid: Boolean = false,
+      val isSaving: Boolean = false,
   ) : MviState
 
   sealed class Event : MviEvent {

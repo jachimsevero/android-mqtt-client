@@ -8,13 +8,20 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import com.jachimsevero.mqttclient.presentation.configscreen.ConfigUiField
 
 @Composable
-internal fun PasswordInput(@StringRes label: Int, value: String, onValueChange: (String) -> Unit) {
+internal fun PasswordInput(
+    @StringRes label: Int,
+    field: ConfigUiField,
+    onValueChange: (String) -> Unit,
+) {
   OutlinedTextField(
-      value = value,
+      value = field.value,
       onValueChange = onValueChange,
       label = { Text(stringResource(label)) },
+      isError = field.error != null,
+      supportingText = { field.error?.let { Text(it) } },
       visualTransformation = PasswordVisualTransformation(),
       modifier = Modifier.fillMaxWidth(),
   )
