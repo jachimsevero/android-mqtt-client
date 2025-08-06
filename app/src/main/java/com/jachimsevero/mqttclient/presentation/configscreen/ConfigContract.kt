@@ -11,8 +11,6 @@ interface ConfigContract {
       val websocketPath: String = "",
       val username: String = "",
       val password: String = "",
-      val topic: String = "",
-      val receivedMessages: String = "",
   ) : MviState
 
   sealed class Event : MviEvent {
@@ -26,7 +24,7 @@ interface ConfigContract {
 
     data class OnPasswordChanged(val password: String) : Event()
 
-    data class OnTopicChanged(val topic: String) : Event()
+    data object OnSaveClicked : Event()
   }
 
   sealed class Effect : MviEffect {

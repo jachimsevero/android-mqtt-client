@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+option java_package = "com.jachimsevero.mqttclient";
+option java_multiple_files = true;
+
+message MqttConfig {
+  string host = 1;
+  int32 port = 2;
+  string username = 3;
+  string password = 4;
+  string topic = 5;
+  string websocket_path = 6;
+}

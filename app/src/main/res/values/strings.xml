@@ -6,6 +6,6 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="topic">Topic</string>
-    <string name="connect">Connect</string>
+    <string name="save">Save</string>
     <string name="received_messages">Received Messages:</string>
 </resources>

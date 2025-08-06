@@ -1,9 +1,12 @@
+import com.google.protobuf.gradle.id
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.android)
   alias(libs.plugins.kotlin.compose)
   alias(libs.plugins.dagger.hilt.android)
   alias(libs.plugins.kotlin.plugin.serialization)
+  alias(libs.plugins.google.protobuf)
   alias(libs.plugins.devtools.ksp)
 }
 
@@ -44,6 +47,26 @@ android {
   }
 }
 
+protobuf {
+  protoc {
+    artifact = "com.google.protobuf:protoc:3.22.4"
+  }
+
+  generateProtoTasks {
+    all().forEach {
+      it.builtins {
+        id("java") {
+          option("lite")
+        }
+
+        id("kotlin") {
+          option("lite")
+        }
+      }
+    }
+  }
+}
+
 dependencies {
 
   implementation(libs.androidx.core.ktx)
@@ -61,6 +84,10 @@ dependencies {
   implementation(libs.androidx.ui.graphics)
   implementation(libs.androidx.ui.tooling.preview)
   implementation(libs.androidx.material3)
+
+  implementation(libs.androidx.datastore.core)
+  implementation(libs.protobuf.javalite)
+  implementation(libs.protobuf.kotlin.lite)
 
   implementation(libs.hivemq.mqtt.client)
   implementation(platform(libs.hivemq.mqtt.client.websocket))
