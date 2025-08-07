@@ -7,7 +7,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.jachimsevero.mqttclient.presentation.configscreen.ConfigUiField
+import com.jachimsevero.mqttclient.presentation.configscreen.model.ConfigUiField
 
 @Composable
 internal fun TextInput(

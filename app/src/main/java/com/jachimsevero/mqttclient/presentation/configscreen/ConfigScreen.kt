@@ -21,18 +21,26 @@ import com.jachimsevero.mqttclient.R
 import com.jachimsevero.mqttclient.presentation.configscreen.components.NumberInput
 import com.jachimsevero.mqttclient.presentation.configscreen.components.PasswordInput
 import com.jachimsevero.mqttclient.presentation.configscreen.components.TextInput
+import com.jachimsevero.mqttclient.presentation.configscreen.model.ConfigUiField
+import com.jachimsevero.mqttclient.presentation.mainscreen.MainContract
+import com.jachimsevero.mqttclient.presentation.mainscreen.MainViewModel
 import com.jachimsevero.mqttclient.presentation.theme.MqttClientTheme
 import kotlinx.coroutines.flow.collectLatest
 
 @Composable
-internal fun ConfigScreen(onSaved: () -> Unit) {
+internal fun ConfigScreen(sharedViewModel: MainViewModel = hiltViewModel(), onSaved: () -> Unit) {
   val viewModel: ConfigViewModel = hiltViewModel()
   val state by viewModel.state.collectAsStateWithLifecycle()
 
   LaunchedEffect(Unit) {
     viewModel.effect.collectLatest { effect ->
       when (effect) {
-        ConfigContract.Effect.Saved -> onSaved()
+        ConfigContract.Effect.Saved -> {
+          sharedViewModel.setEvent(MainContract.Event.OnReconnectClicked)
+          onSaved()
+        }
+
+        ConfigContract.Effect.FailedToSave -> {}
       }
     }
   }

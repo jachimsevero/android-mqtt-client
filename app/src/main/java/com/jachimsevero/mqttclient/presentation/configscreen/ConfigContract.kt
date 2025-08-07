@@ -3,6 +3,7 @@ package com.jachimsevero.mqttclient.presentation.configscreen
 import com.jachimsevero.mqttclient.presentation.MviEffect
 import com.jachimsevero.mqttclient.presentation.MviEvent
 import com.jachimsevero.mqttclient.presentation.MviState
+import com.jachimsevero.mqttclient.presentation.configscreen.model.ConfigUiField
 
 interface ConfigContract {
   data class State(
@@ -31,5 +32,7 @@ interface ConfigContract {
 
   sealed class Effect : MviEffect {
     data object Saved : Effect()
+
+    data object FailedToSave : Effect()
   }
 }

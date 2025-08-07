@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
-import com.jachimsevero.mqttclient.presentation.configscreen.ConfigUiField
+import com.jachimsevero.mqttclient.presentation.configscreen.model.ConfigUiField
 
 @Composable
 internal fun NumberInput(
