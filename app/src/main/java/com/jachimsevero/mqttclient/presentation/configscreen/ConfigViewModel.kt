@@ -5,7 +5,6 @@ import com.jachimsevero.mqttclient.MqttConfig
 import com.jachimsevero.mqttclient.data.local.MqttConfigStore
 import com.jachimsevero.mqttclient.presentation.BaseMVIViewModel
 import com.jachimsevero.mqttclient.presentation.configscreen.model.ConfigUiField
-import com.jachimsevero.mqttclient.service.MqttService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
@@ -13,9 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ConfigViewModel
-@Inject
-constructor(private val mqttConfigStore: MqttConfigStore, private val mqttService: MqttService) :
+class ConfigViewModel @Inject constructor(private val mqttConfigStore: MqttConfigStore) :
     BaseMVIViewModel<ConfigContract.State, ConfigContract.Event, ConfigContract.Effect>(
         ConfigContract.State()
     ) {
